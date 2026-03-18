@@ -1,39 +1,49 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Match your Flutter app to the user's KDE or COSMIC theme
+for better Linux integration.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Creates a theme based on a handful of colors taken from the user's `~/.config/kdeglobals` file.
+
+If we're not on Linux or the file isn't there, `DynamicYaru.getTheme()` will simply return `null`.
+
+For example, here are my Flutter apps
+[Saber](https://github.com/saber-notes/saber)
+and
+[NoMoreBackground](https://github.com/adil192/no_more_background)
+responding to the ambient dark green theme:
+
+<img src="https://raw.githubusercontent.com/adil192/dynamic_yaru/main/assets/screenshot.png">
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add `dynamic_yaru` to your app's dependencies:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```bash
+flutter pub add dynamic_yaru
 ```
 
-## Additional information
+See the example for more detail, but now essentially all you need to do is:
+```dart
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+  @override
+  Widget build(BuildContext context) {
+    DynamicYaru.refresh();
+    final ThemeData? theme = DynamicYaru.getTheme();
+    return MaterialApp(
+      theme: theme,
+      home: ...,
+    );
+  }
+}
+```
+
+Besides this core functionality, the example also has code for caching the result
+and falling back to the regular Yaru theme builder in GNOME.
+
+***
+
+This package is intended to complement the [`yaru`](https://pub.dev/packages/yaru) package
+but is not endorsed by or affiliated with Yaru/Ubuntu/Canonical.
