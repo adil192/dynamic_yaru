@@ -63,6 +63,7 @@ abstract class DynamicYaru {
 
     theme = theme.copyWith(
       colorScheme: theme.colorScheme.copyWith(
+        onSurface: fg,
         inverseSurface: kdeGlobals.getColor(
           'Colors:Complementary',
           'BackgroundNormal',

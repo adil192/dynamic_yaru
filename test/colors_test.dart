@@ -1,7 +1,6 @@
 import 'package:dynamic_yaru/dynamic_yaru.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yaru/yaru.dart';
 
 void main() {
   group('colors are taken directly from kdeglobals', () {
@@ -69,8 +68,7 @@ ForegroundNormal=13,2,14
           Brightness.light,
           Brightness.light,
           Color.fromARGB(255, 249, 162, 233),
-          // Yaru makes this 10% lighter in light mode
-          Color.fromARGB(255, 13, 2, 14).scale(lightness: 0.1),
+          Color.fromARGB(255, 13, 2, 14),
           Color.fromARGB(255, 104, 33, 124),
           Color.fromARGB(255, 207, 121, 194),
           Color.fromARGB(255, 13, 2, 14),
