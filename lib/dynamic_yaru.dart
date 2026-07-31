@@ -23,7 +23,10 @@ abstract class DynamicYaru {
   /// Returns a new theme with colors taken from the `~/.config/kdeglobals` file.
   ///
   /// If the file is not found or the colors are not defined, the input theme is returned.
-  static ThemeData? getTheme() {
+  static ThemeData? getTheme({
+    String? fontFamily,
+    List<String>? fontFamilyFallback,
+  }) {
     if (!enabled) return null;
 
     final kdeGlobals = DynamicYaru._kdeGlobals;
@@ -45,8 +48,8 @@ abstract class DynamicYaru {
 
     // PRs welcome to read the user's default font but for now,
     // we use these to prevent Yaru always using the Ubuntu font.
-    const fontFamily = 'Adwaita Sans';
-    const fontFamilyFallback = [
+    fontFamily ??= 'Adwaita Sans';
+    fontFamilyFallback ??= const [
       'Noto Sans',
       'Cantarell',
       'DejaVu Sans',
@@ -102,7 +105,6 @@ abstract class DynamicYaru {
   static void refresh() {
     if (!enabled) return;
     if (_isThisATest) return;
-    print('Refreshing ${kdeGlobalsFile.path}');
     if (!kdeGlobalsFile.existsSync()) {
       _kdeGlobals = null;
     } else {
