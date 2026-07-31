@@ -43,6 +43,18 @@ abstract class DynamicYaru {
     final onButton = kdeGlobals.getColor('Colors:Button', 'ForegroundNormal');
     final borderColor = Color.lerp(bg, fg, 0.2);
 
+    // PRs welcome to read the user's default font but for now,
+    // we use these to prevent Yaru always using the Ubuntu font.
+    const fontFamily = 'Adwaita Sans';
+    const fontFamilyFallback = [
+      'Noto Sans',
+      'Cantarell',
+      'DejaVu Sans',
+      'Liberation Sans',
+      'Inter',
+      'Roboto',
+    ];
+
     final Brightness brightness = bg.computeLuminance() < 0.5 ? .dark : .light;
     var theme = switch (brightness) {
       .dark => createYaruDarkTheme(
@@ -51,6 +63,8 @@ abstract class DynamicYaru {
         darkBaseColor: bg,
         elevatedButtonColor: button,
         elevatedButtonTextColor: onButton,
+        fontFamily: fontFamily,
+        fontFamilyFallback: fontFamilyFallback,
       ),
       .light => createYaruLightTheme(
         primaryColor: seedColor,
@@ -58,6 +72,8 @@ abstract class DynamicYaru {
         darkBaseColor: fg,
         elevatedButtonColor: button,
         elevatedButtonTextColor: onButton,
+        fontFamily: fontFamily,
+        fontFamilyFallback: fontFamilyFallback,
       ),
     };
 
