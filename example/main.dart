@@ -1,5 +1,5 @@
 import 'package:dynamic_yaru/dynamic_yaru.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:yaru/yaru.dart';
 
 void main() {
