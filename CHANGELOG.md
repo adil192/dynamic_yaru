@@ -1,3 +1,8 @@
+## 0.3.0
+
+- Migrated to the standalone `material_ui` package.
+- Bumped the minimum Flutter version to 3.47.
+
 ## 0.2.0
 
 - Fixed Yaru forcing the font to always be 'Ubuntu'.
